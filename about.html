@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Canopy Collective</title>
-    <!-- All head content is the same as index.html -->
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 <body>
     <div class="page-shell">
-        <!-- The header is identical on every page -->
         <header class="header">
             <nav class="nav container">
                 <a href="./index.html" class="nav__logo">Canopy Collective</a>
@@ -24,28 +19,23 @@
                 </ul>
             </nav>
         </header>
-
-        <!-- The main content area that will be swapped -->
         <main id="main-content">
             <section class="about-detailed section">
-                <div class="about-detailed__container container fade-in">
-                    <!-- ===== REPLACE with a photo of your friend ===== -->
-                    <img src="https://via.placeholder.com/400x400/A3B18A/FFFFFF?text=Jane+Doe" alt="Portrait of the designer" class="about-detailed__img">
+                <!-- CORRECTED: "fade-in" moved to children for staggered effect -->
+                <div class="about-detailed__container container">
+                    <img src="https://via.placeholder.com/400x400/A3B18A/FFFFFF?text=Jane+Doe" alt="Portrait of the designer" class="about-detailed__img fade-in">
                     <div class="about-detailed__text-content">
-                        <h2 class="section__title--left">Design with intention.</h2>
-                        <!-- ===== REPLACE WITH HER "ABOUT ME" TEXT ===== -->
-                        <p class="about__text">
+                        <h2 class="section__title--left fade-in">Design with intention.</h2>
+                        <p class="about__text fade-in">
                             We are Canopy Collective, a design studio dedicated to helping thoughtful brands make a lasting impression. We believe that great design is a blend of strategy and soul. Our process is collaborative, transparent, and tailored to bring your vision to life with clarity and purpose.
                         </p>
-                        <p class="about__text">
+                        <p class="about__text fade-in">
                             From initial concept to final execution, we focus on creating designs that are not only beautiful but also functional and enduring. Whether you're a startup finding your voice or an established brand seeking a refresh, we're here to help you grow.
                         </p>
                     </div>
                 </div>
             </section>
         </main>
-
-        <!-- The footer is identical on every page -->
         <footer class="footer">
              <div class="footer__container container">
                 <p class="footer__copyright">© 2024 Canopy Collective. All Rights Reserved.</p>

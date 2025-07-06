@@ -1,6 +1,30 @@
-/* ===== GOOGLE FONTS ===== */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap');
+/* ===== LOCAL FONT DEFINITIONS ===== */
+/* --- Inter Regular (weight: 400) --- */
+@font-face {
+  font-display: block; /* Optional: Improves perceived performance */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/inter-v19-latin-regular.woff2') format('woff2'); 
+}
 
+/* --- Inter Medium (weight: 500) --- */
+@font-face {
+  font-display: block;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('fonts/inter-v19-latin-500.woff2') format('woff2');
+}
+
+/* --- Playfair Display Bold (weight: 700) --- */
+@font-face {
+  font-display: block;
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/playfair-display-v39-latin-700.woff2') format('woff2');
+}
 /* ===== CSS VARIABLES ===== */
 :root {
     /* Colors */
@@ -10,7 +34,6 @@
     --accent-dark-color: #6A7D45;
     --card-bg-color: #FFFFFF;
     --footer-bg-color: #F8F9FA;
-
     /* Typography */
     --title-font: 'Playfair Display', serif;
     --body-font: 'Inter', sans-serif;
