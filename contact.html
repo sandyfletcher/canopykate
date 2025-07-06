@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Canopy Collective</title>
+    <!-- All head content is the same as index.html -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <div class="page-shell">
+        <!-- The header is identical on every page -->
+        <header class="header">
+            <nav class="nav container">
+                <a href="./index.html" class="nav__logo">Canopy Collective</a>
+                <ul class="nav__links">
+                    <li><a href="./work.html" class="nav__link">Work</a></li>
+                    <li><a href="./about.html" class="nav__link">About</a></li>
+                    <li><a href="./contact.html" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- The main content area that will be swapped -->
+        <main id="main-content">
+            <section class="contact section">
+                <div class="contact__container container fade-in">
+                    <div class="contact__content">
+                        <h2 class="section__title">Let's create something together.</h2>
+                        <p class="contact__description">Have a project in mind? Fill out the form below or email us directly.</p>
+                        
+                        <!-- ===== CONTACT FORM ===== -->
+                        <!-- 1. Go to formspree.io and create a new form. -->
+                        <!-- 2. Replace "YOUR_UNIQUE_ID" with your Formspree form ID. -->
+                        <form action="https://formspree.io/f/YOUR_UNIQUE_ID" method="POST" class="contact__form">
+                            <div class="form__group">
+                                <label for="name" class="form__label">Name</label>
+                                <input type="text" id="name" name="name" class="form__input" required>
+                            </div>
+                            <div class="form__group">
+                                <label for="email" class="form__label">Email</label>
+                                <input type="email" id="email" name="email" class="form__input" required>
+                            </div>
+                            <div class="form__group">
+                                <label for="message" class="form__label">Message</label>
+                                <textarea id="message" name="message" rows="5" class="form__input" required></textarea>
+                            </div>
+                            <button type="submit" class="button">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- The footer is identical on every page -->
+        <footer class="footer">
+             <div class="footer__container container">
+                <p class="footer__copyright">© 2024 Canopy Collective. All Rights Reserved.</p>
+                <div class="footer__socials">
+                    <a href="#" class="footer__social-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fa-brands fa-behance"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

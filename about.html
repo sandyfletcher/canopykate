@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canopy Collective | Graphic Design</title>
+    <title>About | Canopy Collective</title>
+    <!-- All head content is the same as index.html -->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,14 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 <body>
-
-    <div class="page-wrapper">
+    <div class="page-shell">
+        <!-- The header is identical on every page -->
         <header class="header">
             <nav class="nav container">
-                <!-- ===== LOGO NOW LINKS TO HOME ===== -->
                 <a href="./index.html" class="nav__logo">Canopy Collective</a>
                 <ul class="nav__links">
-                    <!-- ===== LINKS UPDATED TO POINT TO HTML FILES ===== -->
                     <li><a href="./work.html" class="nav__link">Work</a></li>
                     <li><a href="./about.html" class="nav__link">About</a></li>
                     <li><a href="./contact.html" class="nav__link">Contact</a></li>
@@ -26,23 +25,29 @@
             </nav>
         </header>
 
-        <main>
-            <!-- ===== HERO SECTION (This is now the only content on the home page) ===== -->
-            <section class="hero section">
-                <div class="hero__container container">
-                    <h1 class="hero__title fade-in">
-                        Crafting brands that grow <br> and stories that connect.
-                    </h1>
-                    <p class="hero__subtitle fade-in">
-                        A design portfolio by Jane Doe, based in Your City.
-                    </p>
-                    <a href="./work.html" class="button fade-in">View Our Work</a>
+        <!-- The main content area that will be swapped -->
+        <main id="main-content">
+            <section class="about-detailed section">
+                <div class="about-detailed__container container fade-in">
+                    <!-- ===== REPLACE with a photo of your friend ===== -->
+                    <img src="https://via.placeholder.com/400x400/A3B18A/FFFFFF?text=Jane+Doe" alt="Portrait of the designer" class="about-detailed__img">
+                    <div class="about-detailed__text-content">
+                        <h2 class="section__title--left">Design with intention.</h2>
+                        <!-- ===== REPLACE WITH HER "ABOUT ME" TEXT ===== -->
+                        <p class="about__text">
+                            We are Canopy Collective, a design studio dedicated to helping thoughtful brands make a lasting impression. We believe that great design is a blend of strategy and soul. Our process is collaborative, transparent, and tailored to bring your vision to life with clarity and purpose.
+                        </p>
+                        <p class="about__text">
+                            From initial concept to final execution, we focus on creating designs that are not only beautiful but also functional and enduring. Whether you're a startup finding your voice or an established brand seeking a refresh, we're here to help you grow.
+                        </p>
+                    </div>
                 </div>
             </section>
         </main>
-        
+
+        <!-- The footer is identical on every page -->
         <footer class="footer">
-            <div class="footer__container container">
+             <div class="footer__container container">
                 <p class="footer__copyright">© 2024 Canopy Collective. All Rights Reserved.</p>
                 <div class="footer__socials">
                     <a href="#" class="footer__social-link"><i class="fa-brands fa-instagram"></i></a>
@@ -52,7 +57,6 @@
             </div>
         </footer>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
