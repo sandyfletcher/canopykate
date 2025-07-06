@@ -54,8 +54,17 @@ img {
     display: block;
 }
 
+/* ===== LAYOUT & REUSABLE CLASSES ===== */
+.page-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-/* ===== REUSABLE CSS CLASSES ===== */
+main {
+    flex-grow: 1;
+}
+
 .container {
     max-width: 1120px;
     margin-left: auto;
@@ -64,7 +73,7 @@ img {
 }
 
 .section {
-    padding: 6rem 0 2rem;
+    padding: 6rem 0;
 }
 
 .section__title {
@@ -74,13 +83,23 @@ img {
     color: var(--text-color);
 }
 
+.section__title--left {
+    font-size: 2.5rem;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
 .button {
     display: inline-block;
     background-color: var(--accent-color);
     color: #fff;
     padding: 1rem 2rem;
+    border: none;
     border-radius: 0.5rem;
     font-weight: 500;
+    font-family: var(--body-font);
+    font-size: 1rem;
+    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
@@ -90,12 +109,14 @@ img {
 
 /* ===== HEADER & NAV ===== */
 .header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
-    transition: background-color 0.4s, box-shadow 0.4s;
+    background-color: rgba(253, 251, 246, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .nav {
@@ -120,6 +141,7 @@ img {
     font-weight: 500;
     position: relative;
     padding-bottom: 0.25rem;
+    transition: color 0.3s ease;
 }
 
 .nav__link::after {
@@ -133,22 +155,26 @@ img {
     transition: width 0.3s ease;
 }
 
+.nav__link:hover {
+    color: var(--text-color);
+}
+
 .nav__link:hover::after {
     width: 100%;
 }
 
-/* Add background to header on scroll */
-.header.scrolled {
-    background-color: rgba(253, 251, 246, 0.9);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+/* Active Nav Link Style */
+.nav__link.active {
+    color: var(--accent-color);
+}
+.nav__link.active::after {
+    width: 100%;
 }
 
-/* ===== HERO SECTION ===== */
+/* ===== HERO SECTION (HOME PAGE) ===== */
 .hero.section {
     padding: 8rem 0;
     text-align: center;
-    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -166,7 +192,7 @@ img {
     color: #6c757d;
 }
 
-/* ===== WORK SECTION ===== */
+/* ===== WORK SECTION (WORK PAGE) ===== */
 .work__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -205,6 +231,14 @@ img {
     padding: 1.5rem;
     background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     color: #fff;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.work__item:hover .work__details {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .work__title {
@@ -216,10 +250,20 @@ img {
     font-size: 0.9rem;
 }
 
-/* ===== ABOUT SECTION ===== */
-.about__container {
-    max-width: 768px;
-    text-align: center;
+/* ===== ABOUT SECTION (ABOUT PAGE) ===== */
+.about-detailed__container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    gap: 4rem;
+}
+
+.about-detailed__img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 0.5rem;
+    justify-self: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .about__text {
@@ -228,129 +272,17 @@ img {
     color: #555;
 }
 
-/* ===== CONTACT SECTION ===== */
-.contact.section {
-    background-color: var(--footer-bg-color);
-}
-
+/* ===== CONTACT SECTION (CONTACT PAGE) ===== */
 .contact__container {
     text-align: center;
 }
-
 .contact__content .section__title {
     margin-bottom: 1rem;
 }
-
 .contact__description {
     margin-bottom: 2.5rem;
     font-size: 1.1rem;
 }
-
-/* ===== FOOTER ===== */
-.footer {
-    padding: 3rem 1.5rem;
-}
-
-.footer__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer__copyright {
-    color: #6c757d;
-}
-
-.footer__socials {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.footer__social-link {
-    font-size: 1.25rem;
-    color: #6c757d;
-    transition: color 0.3s ease;
-}
-
-.footer__social-link:hover {
-    color: var(--accent-color);
-}
-
-
-/* ===== FADE-IN ANIMATION ===== */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===== PAGE TRANSITIONS ===== */
-.page-wrapper {
-    opacity: 1;
-    transition: opacity 0.4s ease-in-out;
-}
-
-body.fade-out .page-wrapper {
-    opacity: 0;
-}
-
-/* ===== ACTIVE NAV LINK ===== */
-/* This highlights the current page in the navigation */
-.nav__link.active {
-    color: var(--accent-color);
-}
-.nav__link.active::after {
-    width: 100%;
-    background-color: var(--accent-color);
-}
-
-/* ===== Add these new/updated styles to your style.css file ===== */
-
-/* ===== PAGE SHELL ===== */
-/* This wrapper holds the persistent elements (header/footer) */
-.page-shell {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-main {
-    flex-grow: 1;
-}
-
-/* ===== PAGE TRANSITION FOR MAIN CONTENT ===== */
-#main-content {
-    transition: opacity 0.4s ease-in-out;
-}
-#main-content.fade-out {
-    opacity: 0;
-}
-
-/* ===== ABOUT DETAILED SECTION ===== */
-.about-detailed__container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    align-items: center;
-    gap: 4rem;
-}
-.about-detailed__img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 0.5rem;
-    justify-self: center;
-}
-.section__title--left {
-    font-size: 2.5rem;
-    text-align: left;
-    margin-bottom: 1.5rem;
-}
-
-/* ===== CONTACT FORM ===== */
 .contact__form {
     max-width: 600px;
     margin: 2rem auto 0 auto;
@@ -380,39 +312,93 @@ main {
     box-shadow: 0 0 0 3px rgba(138, 154, 91, 0.2);
 }
 
+/* ===== FOOTER ===== */
+.footer {
+    padding: 3rem 1.5rem;
+    background-color: var(--footer-bg-color);
+    border-top: 1px solid #eaeaea;
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__copyright {
+    color: #6c757d;
+}
+
+.footer__socials {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer__social-link {
+    font-size: 1.25rem;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+.footer__social-link:hover {
+    color: var(--accent-color);
+}
+
+/* ===== ANIMATIONS & TRANSITIONS ===== */
+/* Main content fade transition */
+#main-content {
+    transition: opacity 0.4s ease-in-out;
+}
+#main-content.fade-out {
+    opacity: 0;
+}
+
+/* Element fade-in on scroll */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* ===== RESPONSIVE DESIGN (FOR MOBILE) ===== */
 @media (max-width: 768px) {
     .section {
-        padding: 4rem 0 1rem;
+        padding: 4rem 0;
     }
     
     .nav {
         height: 4rem;
     }
-
+    .nav__logo {
+        font-size: 1.1rem;
+    }
     .nav__links {
-        display: none; /* Simplification for one-pager on mobile */
+        /* On a real project, you'd implement a hamburger menu here. */
+        /* For this portfolio, we will simplify by reducing gap. */
+        gap: 1rem;
+    }
+    .nav__link {
+        font-size: 0.9rem;
     }
 
     .hero__title {
         font-size: 2.5rem;
     }
-
     .hero__subtitle {
         font-size: 1rem;
     }
 
-    .section__title {
+    .section__title, .section__title--left {
         font-size: 2rem;
     }
-    
+
     .work__grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .footer__container {
-        flex-direction: column;
         gap: 1.5rem;
     }
 
@@ -422,6 +408,12 @@ main {
         text-align: center;
     }
     .section__title--left {
+        text-align: center;
+    }
+
+    .footer__container {
+        flex-direction: column;
+        gap: 1.5rem;
         text-align: center;
     }
 }
