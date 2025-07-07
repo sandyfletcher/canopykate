@@ -19,16 +19,24 @@
             </nav>
         </header>
         <main id="main-content">
-            <section class="work section">
+            <!-- 1. NEW INTRO SECTION -->
+            <section class="work-intro section">
+                <div class="container fade-in">
+                    <h2 class="section__title">Our Recent Projects</h2>
+                    <p class="work-intro__subtitle">We partner with thoughtful brands to create purposeful designs. Here’s a selection of our favorite collaborations.</p>
+                </div>
+            </section>
+            
+            <!-- 2. UPDATED WORK GRID SECTION -->
+            <section class="work section" style="padding-top: 0;">
                 <div class="container">
-                    <h2 class="section__title fade-in">Featured Work</h2>
-                    <div class="work__grid">
-                        <!-- Project 1 -->
-                        <a href="#" class="work__item fade-in">
-                            <img src="https://via.placeholder.com/800x600/A3B18A/FFFFFF?text=Project+One" alt="Project 1" class="work__img">
+                    <div class="work__grid work__grid--featured">
+                        <!-- Project 1 (Featured) -->
+                        <a href="./project-detail.html" class="work__item work__item--featured fade-in">
+                            <img src="https://via.placeholder.com/1200x800/A3B18A/FFFFFF?text=The+Daily+Grind" alt="The Daily Grind Project" class="work__img">
                             <div class="work__details">
-                                <h3 class="work__title">Brand Identity</h3>
-                                <p class="work__description">A complete visual system for a startup.</p>
+                                <h3 class="work__title">The Daily Grind — Brand Identity</h3>
+                                <p class="work__description">A complete visual system for a beloved local cafe.</p>
                             </div>
                         </a>
                         <!-- Project 2 -->
@@ -39,22 +47,24 @@
                                 <p class="work__description">An e-commerce site focused on user experience.</p>
                             </div>
                         </a>
-                        <!-- Add more projects as needed -->
+                        <!-- Project 3 -->
                         <a href="#" class="work__item fade-in">
-                            <img src="https://via.placeholder.com/800x600/A3B18A/FFFFFF?text=Project+Three" alt="Project 3" class="work__img">
+                            <img src="https://via.placeholder.com/800x600/6A7D45/FFFFFF?text=Project+Three" alt="Project 3" class="work__img">
                             <div class="work__details">
                                 <h3 class="work__title">Packaging Design</h3>
                                 <p class="work__description">Eco-friendly packaging for a coffee brand.</p>
                             </div>
                         </a>
-                        <a href="#" class="work__item fade-in">
-                            <img src="https://via.placeholder.com/800x600/8a9a5b/FFFFFF?text=Project+Four" alt="Project 4" class="work__img">
-                            <div class="work__details">
-                                <h3 class="work__title">Illustration</h3>
-                                <p class="work__description">Custom editorial illustrations for a magazine.</p>
-                            </div>
-                        </a>
                     </div>
+                </div>
+            </section>
+
+            <!-- 3. NEW CALL TO ACTION SECTION -->
+            <section class="cta-section section">
+                <div class="container fade-in">
+                     <h2 class="cta__title">Have a project in mind?</h2>
+                     <p class="cta__subtitle">Let's create something beautiful and effective together.</p>
+                     <a href="./contact.html" class="button">Get in Touch</a>
                 </div>
             </section>
         </main>
