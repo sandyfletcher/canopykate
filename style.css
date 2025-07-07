@@ -54,11 +54,9 @@ img {
 }
 main {
     flex-grow: 1;
-    /* CHANGE 1: Make main a flex container to control its children */
     display: flex;
     flex-direction: column;
 }
-
 /* Standardized Section Layout */
 .section {
     position: relative; /* Needed for pseudo-elements like hero overlay */
