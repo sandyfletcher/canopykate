@@ -252,16 +252,6 @@ main {
 .work__description {
     font-size: 0.9rem;
 }
-.work-intro {
-    text-align: center;
-    padding-bottom: 3rem;
-}
-.work-intro__subtitle {
-    font-size: 1.25rem;
-    color: #6c757d;
-    max-width: 600px;
-    margin: 0 auto;
-}
 .work__grid--featured {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -472,11 +462,6 @@ main {
     }
     .work__grid--featured {
         grid-template-columns: 1fr;
-    }
-    .about-detailed__container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        text-align: center;
     }
     .section__title--left {
         text-align: center;

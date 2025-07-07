@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.getElementById('main-content');
-    
+    let isTransitioning = false; // Flag to prevent rapid-fire clicks
+
     // Function to apply fade-in animations to elements
     const initPageAnimations = () => {
         const fadeInElements = mainContent.querySelectorAll('.fade-in');
@@ -32,6 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to load page content dynamically
     const loadPage = async (url) => {
+        // Prevent new transitions if one is already in progress
+        if (isTransitioning) return;
+        isTransitioning = true;
+
         // 1. Fade out the current content
         mainContent.classList.add('fade-out');
 
@@ -59,10 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Re-initialize animations for the new content
                 initPageAnimations();
 
+                // Reset the flag after the transition is complete
+                isTransitioning = false;
+
             }, { once: true }); // Important: listener runs only once
 
         } catch (error) {
             console.error('Failed to load page:', error);
+            isTransitioning = false; // Also reset the flag on error
             window.location.href = url; // Fallback to normal navigation
         }
     };
