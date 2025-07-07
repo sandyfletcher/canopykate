@@ -54,14 +54,22 @@ img {
 }
 main {
     flex-grow: 1;
+    /* CHANGE 1: Make main a flex container to control its children */
     display: flex;
     flex-direction: column;
 }
+
+/* Standardized Section Layout */
+.section {
+    position: relative; /* Needed for pseudo-elements like hero overlay */
+}
 .container {
     max-width: 1120px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
+
 .section__title {
     font-size: 2.5rem;
     text-align: center;
@@ -150,15 +158,15 @@ main {
 
 .hero.section {
     flex-grow: 1;
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    z-index: 1;
+    padding: 0; /* Override default section padding to allow video to be edge-to-edge */
+    text-align: center;
     overflow: hidden;
+    z-index: 1;
 }
-.hero.section::after {
+.hero::after {
     content: '';
     position: absolute;
     top: 0;
@@ -183,6 +191,7 @@ main {
 .hero__container {
     position: relative;
     z-index: 1;
+    padding: 2rem 1.5rem; /* Add padding here so text isn't at screen edges */
 }
 .hero__title {
     font-size: 4rem;
@@ -380,7 +389,7 @@ main {
 /* FOOTER */
 
 .footer {
-    padding: 2rem;
+    padding: 2rem 1.5rem; /* Added horizontal padding for consistency */
     background-color: var(--footer-bg-color);
     border-top: 1px solid #eaeaea;
 }
@@ -430,7 +439,7 @@ main {
 
 @media (max-width: 768px) {
     .section {
-        padding: 4rem 0;
+        padding: 4rem 1.5rem; /* Adjust vertical padding for mobile */
     }
     .nav {
         height: 4rem;
