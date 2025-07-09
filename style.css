@@ -1,8 +1,8 @@
+/* === GLOBAL STYLES & SETUP === */
+
 @font-face { font-display: block; font-family: 'Inter'; font-style: normal; font-weight: 400; src: url('assets/fonts/inter-v19-latin-regular.woff2') format('woff2'); }
 @font-face { font-display: block; font-family: 'Inter'; font-style: normal; font-weight: 500; src: url('assets/fonts/inter-v19-latin-500.woff2') format('woff2'); }
 @font-face { font-display: block; font-family: 'Playfair Display'; font-style: normal; font-weight: 700; src: url('assets/fonts/playfair-display-v39-latin-700.woff2') format('woff2'); }
-
-/* BASE STYLES */
 
 :root {
     --bg-color: #FDFBF6;
@@ -45,7 +45,7 @@ img {
     display: block;
 }
 
-/* LAYOUT & REUSABLE CLASSES */
+/* === REUSABLE LAYOUT & COMPONENTS ===*/
 
 .page-shell {
     display: flex;
@@ -57,17 +57,16 @@ main {
     display: flex;
     flex-direction: column;
 }
-/* Standardized Section Layout */
-.section {
-    position: relative; /* Needed for pseudo-elements like hero overlay */
-}
 .container {
     max-width: 1120px;
-    width: 100%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
-
+.section {
+    padding: 5rem 0;
+    position: relative;
+}
 .section__title {
     font-size: 2.5rem;
     text-align: center;
@@ -95,12 +94,27 @@ main {
 .button:hover {
     background-color: var(--accent-dark-color);
 }
-
-/* HEADER */
-.nav.container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+#main-content {
+    transition: opacity 0.4s ease-in-out;
 }
+#main-content.fade-out {
+    opacity: 0;
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.fade-in:nth-child(2) { transition-delay: 100ms; }
+.fade-in:nth-child(3) { transition-delay: 200ms; }
+.fade-in:nth-child(4) { transition-delay: 300ms; }
+
+/* === HEADER === */
+
 .header {
     position: sticky;
     top: 0;
@@ -111,7 +125,10 @@ main {
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-.nav {
+.header .nav {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
     height: 4.5rem;
     display: flex;
     justify-content: space-between;
@@ -155,19 +172,47 @@ main {
     width: 100%;
 }
 
-/* LANDING PAGE */
+/* === FOOTER === */
 
-.hero.section {
+.footer {
+    padding: 2rem 1.5rem;
+    background-color: var(--footer-bg-color);
+    border-top: 1px solid #eaeaea;
+}
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer__copyright {
+    color: #6c757d;
+}
+.footer__socials {
+    display: flex;
+    gap: 1.5rem;
+}
+.footer__social-link {
+    font-size: 1.25rem;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+.footer__social-link:hover {
+    color: var(--accent-color);
+}
+
+/* === LANDING === */
+
+.hero {
     flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0; /* Override default section padding to allow video to be edge-to-edge */
+    padding: 4rem 1.5rem;
     text-align: center;
     overflow: hidden;
-    z-index: 1;
+    position: relative;
 }
-.hero::after {
+.hero::after { /* semi-transparent overlay */
     content: '';
     position: absolute;
     top: 0;
@@ -189,10 +234,9 @@ main {
     z-index: -1;
     object-fit: cover;
 }
-.hero__container {
+.hero .container { /* hero content container */
     position: relative;
     z-index: 1;
-    padding: 2rem 1.5rem; /* Add padding here so text isn't at screen edges */
 }
 .hero__title {
     font-size: 4rem;
@@ -203,18 +247,20 @@ main {
     font-size: 1.25rem;
     margin-bottom: 2.5rem;
 }
-.hero__title,
-.hero__subtitle,
-.hero .about__text {
-    color: var(--text-color);
+.about__text {
+    max-width: 600px;
+    margin: 3rem auto 0 auto;
 }
 
-/* WORK PAGE */
+/* === WORK === */
 
 .work__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+}
+.work__grid--featured {
+    grid-template-columns: repeat(2, 1fr);
 }
 .work__item {
     position: relative;
@@ -259,11 +305,6 @@ main {
 .work__description {
     font-size: 0.9rem;
 }
-.work__grid--featured {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-}
 .work__item--featured {
     grid-column: 1 / -1;
 }
@@ -281,9 +322,9 @@ main {
     color: #555;
 }
 
-/* CONTACT PAGE */
+/* === CONTACT === */
 
-.contact.section {
+.contact {
     background-image: url('assets/hero.jpg');
     background-size: cover;
     background-position: center;
@@ -292,19 +333,20 @@ main {
     flex-grow: 1;
     align-items: center;
     justify-content: center;
+    padding: 4rem 1.5rem;
 }
-.contact.section::before {
+.contact::before { /* overlay */
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(253, 251, 246, 0.5); /* The site BG color, but semi-transparent */
+    background-color: rgba(253, 251, 246, 0.5);
     z-index: 0;
 }
 .contact__container {
-    position: relative; /* Make sure content sits above the ::before overlay */
+    position: relative;
     z-index: 1;
     text-align: center;
 }
@@ -344,7 +386,7 @@ main {
     box-shadow: 0 0 0 3px rgba(138, 154, 91, 0.2);
 }
 
-/* PROJECT PAGE */
+/* === DETAIL === */
 
 .project-header {
     text-align: center;
@@ -409,62 +451,18 @@ main {
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-/* FOOTER */
-
-.footer {
-    padding: 2rem 1.5rem; /* Added horizontal padding for consistency */
-    background-color: var(--footer-bg-color);
-    border-top: 1px solid #eaeaea;
-}
-.footer__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.footer__copyright {
-    color: #6c757d;
-}
-.footer__socials {
-    display: flex;
-    gap: 1.5rem;
-}
-.footer__social-link {
-    font-size: 1.25rem;
-    color: #6c757d;
-    transition: color 0.3s ease;
-}
-.footer__social-link:hover {
-    color: var(--accent-color);
-}
-
-/* TRANSITIONS / ANIMATIONS */
-
-#main-content {
-    transition: opacity 0.4s ease-in-out;
-}
-#main-content.fade-out {
-    opacity: 0;
-}
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.fade-in.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-.fade-in:nth-child(2) { transition-delay: 100ms; }
-.fade-in:nth-child(3) { transition-delay: 200ms; }
-.fade-in:nth-child(4) { transition-delay: 300ms; }
-
-/* RESPONSIVE DESIGN */
+/* === MOBILE === */
 
 @media (max-width: 768px) {
+    /* Adjustments */
     .section {
-        padding: 4rem 1.5rem; /* Adjust vertical padding for mobile */
+        padding: 4rem 0;
     }
-    .nav {
+    .section__title, .section__title--left {
+        font-size: 2rem;
+    }
+    /* Header */
+    .header .nav {
         height: 4rem;
     }
     .nav__logo {
@@ -476,25 +474,20 @@ main {
     .nav__link {
         font-size: 0.9rem;
     }
+    /* Home */
     .hero__title {
         font-size: 2.5rem;
     }
     .hero__subtitle {
         font-size: 1rem;
     }
-    .section__title, .section__title--left {
-        font-size: 2rem;
-    }
-    .work__grid {
+    /* Work */
+    .work__grid,
+    .work__grid--featured {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    .work__grid--featured {
-        grid-template-columns: 1fr;
-    }
-    .section__title--left {
-        text-align: center;
-    }
+    /* Detail */
     .project-detail__title {
         font-size: 2.25rem;
     }
@@ -502,22 +495,26 @@ main {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
+    .section__title--left {
+        text-align: center;
+    }
     .project-meta {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        justify-content: center;
         text-align: center;
     }
     .project-gallery {
         grid-template-columns: 1fr;
     }
-    .footer__container {
+    /* Contact */
+    .contact__form {
+      text-align: center;
+    }
+    /* Footer */
+    .footer .container {
         flex-direction: column;
         gap: 1.5rem;
-        text-align: center;
-    }
-    .form__label {
         text-align: center;
     }
 }
