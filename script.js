@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Function to load page content dynamically
+    // Function to load page content dynamically (for transitions)
     const loadPage = async (url) => {
         // Prevent new transitions if one is already in progress
         if (isTransitioning) return;
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. Fetch the new page's HTML
             const response = await fetch(url);
             const text = await response.text();
-
             // 3. Create a temporary container to parse the new HTML
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = text;
@@ -53,17 +52,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const newTitle = tempDiv.querySelector('title').innerText;
 
             // 4. Wait for fade-out, then swap content and fade in
-            mainContent.addEventListener('transitionend', () => {
-                // Update the DOM
+            mainContent.addEventListener('transitionend', async () => {
                 mainContent.innerHTML = newMainContent;
                 document.title = newTitle;
                 
-                // Make content visible and remove the fade-out class
+                // Wait for all new images to load before fading in
+                const images = mainContent.querySelectorAll('img');
+                const imageLoadPromises = [...images].map(img => {
+                    return new Promise(resolve => {
+                        if (img.complete) return resolve();
+                        img.onload = () => resolve();
+                        img.onerror = () => resolve(); // Don't let a broken image block the transition
+                    });
+                });
+                await Promise.all(imageLoadPromises);
+
                 mainContent.classList.remove('fade-out');
-                
                 // Re-initialize animations for the new content
                 initPageAnimations();
-
                 // Reset the flag after the transition is complete
                 isTransitioning = false;
 
@@ -81,15 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Intercept all internal link clicks
     document.body.addEventListener('click', e => {
         const link = e.target.closest('a');
-        
         // Check if it's an internal link and not a special link
         if (link && link.href.startsWith(window.location.origin) && !link.href.includes('#') && link.target !== '_blank') {
             e.preventDefault();
             const targetUrl = link.href;
-
             // Don't do anything if we're already on the page
             if (window.location.href === targetUrl) return;
-
             // Update URL in browser history and load the new page
             history.pushState({}, '', targetUrl);
             updateActiveNav(new URL(targetUrl).pathname);
@@ -104,8 +107,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- INITIAL PAGE LOAD SETUP ---
-    // Highlight the active link on initial load
-    updateActiveNav(window.location.pathname);
-    // Run animations for elements on initial page load
-    initPageAnimations();
+
+    // New function to handle the very first page load smoothly
+    const initializeFirstLoad = async () => {
+        // Highlight the active link immediately
+        updateActiveNav(window.location.pathname);
+
+        // Wait for initial images to load before starting animations
+        const initialImages = mainContent.querySelectorAll('img');
+        const imageLoadPromises = [...initialImages].map(img => {
+            return new Promise(resolve => {
+                if (img.complete) return resolve();
+                img.onload = () => resolve();
+                img.onerror = () => resolve();
+            });
+        });
+        await Promise.all(imageLoadPromises);
+
+        // Now that images are ready, run the animations
+        initPageAnimations();
+    };
+
+    // Run the initialization function
+    initializeFirstLoad();
 });
