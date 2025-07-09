@@ -247,7 +247,7 @@ main {
     font-size: 1.25rem;
     margin-bottom: 2.5rem;
 }
-.about__text {
+.hero__about-text {
     max-width: 600px;
     margin: 3rem auto 0 auto;
 }
@@ -308,10 +308,9 @@ main {
 .work__item--featured {
     grid-column: 1 / -1;
 }
-.calltoaction {
+.cta {
     background-color: var(--footer-bg-color);
     text-align: center;
-    padding: 1rem 1rem;
 }
 .cta__title {
     font-size: 2.5rem;
@@ -334,7 +333,6 @@ main {
     flex-grow: 1;
     align-items: center;
     justify-content: center;
-    padding: 4rem 1.5rem;
 }
 .contact::before { /* overlay */
     content: '';
@@ -415,10 +413,10 @@ main {
     gap: 4rem;
     margin-bottom: 4rem;
 }
-.project-meta .meta__item {
+.project-meta__item {
     margin-bottom: 2rem;
 }
-.project-meta .meta__title {
+.project-meta__title {
     font-family: var(--body-font);
     font-size: 0.9rem;
     font-weight: 500;
@@ -427,7 +425,7 @@ main {
     color: var(--accent-color);
     margin-bottom: 0.5rem;
 }
-.project-meta .meta__text {
+.project-meta__text {
     font-size: 1rem;
     color: #555;
 }
